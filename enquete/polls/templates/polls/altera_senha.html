@@ -1,0 +1,23 @@
+{% extends "polls/layout.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block titulo %} Altera Senha {% endblock titulo %}
+
+{% block conteudo %}
+
+    <div class="container w-75">
+
+        <form method="post">
+
+            {% csrf_token %}
+            
+            {{ form|crispy }}
+
+                
+
+        </form>
+
+    </div>
+
+{% endblock conteudo %}

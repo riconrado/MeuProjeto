@@ -1,0 +1,19 @@
+ body{
+    background-color:white;
+}
+
+.divLayout {
+
+  li a {
+    display: block;
+    color: white;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+  li a:hover {
+    background-color: darkgray;
+    color: white;
+  }
+
+}

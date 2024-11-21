@@ -1,0 +1,28 @@
+{% extends "polls/layout.html" %}
+
+{% block titulo %} Pesquisa {% endblock titulo %}
+
+{% block conteudo %}
+
+    <form action="{% url 'polls:Votos' pergunta.id %}" method="post">
+    {% csrf_token %}
+        
+        <fieldset class="m-3">
+            <legend><h1>{{ pergunta.texto_da_pergunta }}</h1></legend>
+
+            {% if error_message %} <b>{{ error_message }}</b><br> {% endif %}
+
+                {% for resposta in pergunta.resposta_set.all %}
+                
+                    <input type="radio" name="escolha" id="escolha{{ forloop.counter }}" value="{{ resposta.id }}">
+                    <label for="escolha{{ forloop.counter }}">{{ resposta.texto_da_resposta }}</label><br>
+
+                {% endfor %}
+        
+        </fieldset>
+
+        <input type="submit" class="btn btn-primary" value="Votar" class="m-3">
+
+    </form>
+
+{% endblock conteudo %}

@@ -1,0 +1,26 @@
+{% extends "polls/layout.html" %}
+
+{% block titulo %} HomePage {% endblock  %}
+
+{% block conteudo %}
+
+    {% if lista_ultimas_perguntas %}
+    
+    <div class="bd-content ps-lg-2 w-50 p-3">
+            <ul class="list-group"; width:20%;>
+                {% for pergunta in lista_ultimas_perguntas %}
+                
+                    <li class="list-group-item">
+                        <a href="{% url 'polls:Detalhe' pergunta.id %}"> {{ pergunta.texto_da_pergunta }}</a>
+                    </li>
+                    
+                {% endfor %}
+            </ul>
+        </div>
+        
+
+    {% else %}
+        <p>Não há perguntas</p>
+    {% endif %}
+
+{% endblock conteudo %}

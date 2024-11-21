@@ -1,0 +1,18 @@
+{% extends "polls/layout.html" %}
+{% block titulo %} Resultado {% endblock titulo %}
+
+{% block conteudo %}
+
+    <h1>{{ pergunta.texto_da_pergunta }}</h1>
+
+    <ul>
+        {% for escolha in pergunta.resposta_set.all %}
+            
+            <li>{{ escolha.texto_da_resposta }} - {{ escolha.votos }} voto{{ escolha.votos|pluralize }} - {{ escolha.totalVotos|floatformat:-2 }} %</li>
+
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'polls:Detalhe' pergunta.id %}">Votar Novamente?</a>
+
+{% endblock conteudo %}
