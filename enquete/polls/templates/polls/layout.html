@@ -10,14 +10,14 @@
 
     {% bootstrap_css %}
     {% bootstrap_javascript %}
-    
+    {% comment %} {% bootstrap_messages %} {% endcomment %}
+
     <link rel="stylesheet" href="{% static 'polls/style.css' %}">
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <title>
-        {% bootstrap_messages %}
        
        {% block titulo  %}
             Django App
@@ -38,6 +38,7 @@
                 <li class="nav-item"><a class="nav-link" href="{% url 'polls:Registro' %}">Novo Usuário</a></li>
                 {% if user.is_authenticated %}
                     <li class="nav-item"><a class="nav-link" href="{% url 'polls:AlteraCadastro' %}">Alterar Cadastro</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'polls:AlteraSenha' %}">Alterar Senha</a></li>
                 {% endif %}
             </ul>
 
@@ -64,6 +65,17 @@
                         
                         <div class="alert alert-{{ message.tags }}">
                             {{ message }}
+                            
+                            {% if usuario_form.errors %}
+                                
+                                <ul>
+                                    {% for field in usuario_form %}
+                                        {% if field.errors %}<li>{{ field.label }}: {{ field.errors|striptags }}</li>{% endif %}
+                                    {% endfor %}
+                                </ul>
+                
+
+                            {% endif %}
                         </div>
 
                     {% endfor %}

@@ -1,9 +1,11 @@
 import datetime
 from django.db import models
 from django.db.models import Sum
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 from django.utils import timezone
+from django.contrib.auth.models import User
 
-# Create your models here.
 
 class Pergunta(models.Model):
     texto_da_pergunta = models.CharField(max_length=200)
@@ -33,3 +35,27 @@ class Resposta(models.Model):
 
         return percentual
 
+class UserProfile(models.Model):
+    sexo_lista = (
+            ('M','Masculino'),
+            ('F','Feminino'),
+            ('N','Não desejo informar')
+        )
+
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    sexo = models.CharField(max_length=1, choices=sexo_lista, blank=True, null=True)
+    data_nascimento = models.DateField("Data de Nascimento", blank=True, null=True)
+
+
+    def __str__(self):
+        return f"{self.user.username} Profile"
+
+
+@receiver(post_save, sender=User)
+# def create_or_update_user_profile(sender, instance, created, **kwargs):
+#     UserProfile.objects.get_or_create(user=instance)
+
+def update_user_profile(sender, instance, created, **kwargs):
+    if created:
+        UserProfile.objects.create(user=instance)
+    instance.userprofile.save()

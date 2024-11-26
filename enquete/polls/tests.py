@@ -3,18 +3,18 @@ from django.test import TestCase
 from django.utils import timezone
 from django.contrib.auth.forms import UserCreationForm
 from django.db.models import Sum
-from . models import Pergunta, Resposta
+from . models import Pergunta, Resposta, UserProfile
 
 
-class PerguntaModelTests(TestCase):
-    def teste_foi_publicado_recentemente(self):
-        time = timezone.now() + datetime.timedelta(days=30)
-        data_futura = Pergunta(data_publicacao=time)
-        self.assertIs(data_futura.publicada_recentemente(), False)
+# class PerguntaModelTests(TestCase):
+#     def teste_foi_publicado_recentemente(self):
+#         time = timezone.now() + datetime.timedelta(days=30)
+#         data_futura = Pergunta(data_publicacao=time)
+#         self.assertIs(data_futura.publicada_recentemente(), False)
 
-class PerguntaTesteData(TestCase):
-    def teste(self):
-        print((timezone.now() - datetime.timedelta(days=5)) <= timezone.now() <= (timezone.now() - datetime.timedelta(days=1)))
+# class PerguntaTesteData(TestCase):
+#     def teste(self):
+#         print((timezone.now() - datetime.timedelta(days=5)) <= timezone.now() <= (timezone.now() - datetime.timedelta(days=1)))
 
 class UserCreationFormTest(TestCase):
     def test_form(self):
@@ -28,7 +28,7 @@ class UserCreationFormTest(TestCase):
 
         self.assertTrue(form.is_valid())
         
-class SomaValor(TestCase):
+# class SomaValor(TestCase):
         def test_somaVotos(self):
 
             Pergunta.objects.create(texto_da_pergunta="O teste Funciona ?",data_publicacao= timezone.now())

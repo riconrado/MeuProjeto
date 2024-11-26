@@ -11,9 +11,42 @@
     <form action="/polls/registro/" method="post">
         {% csrf_token %}
 
-        {% comment %} {% crispy form %} {% endcomment %}
-        {{ form|crispy }}
-        <button type="submit" class="btn btn-primary">Alterar Senha</button>
+        {% comment %} {% crispy usuario_form %}
+        {% crispy profile_form %} {% endcomment %}
+        <div class="row">
+            <div class="form-group col-md-6">
+              {{ usuario_form.first_name|as_crispy_field }}
+            </div>
+            <div class="form-group col-md-6">
+              {{ usuario_form.last_name|as_crispy_field }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-*">
+              {{ usuario_form.username|as_crispy_field }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6">
+              {{ usuario_form.password1|as_crispy_field }}
+            </div>
+            <div class="form-group col-md-6">
+              {{ usuario_form.password2|as_crispy_field }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6">
+              {{ profile_form.sexo|as_crispy_field }}
+            </div>
+            <div class="form-group col-md-6">
+              {{ profile_form.data_nascimento|as_crispy_field }}
+            </div>
+        </div>
+
+        {% comment %} {{ usuario_form|crispy }}
+        {{ profile_form|crispy }} {% endcomment %}
+        
+        <button type="submit" class="btn btn-primary">Cadastrar</button>
 
     </form>
 </div>

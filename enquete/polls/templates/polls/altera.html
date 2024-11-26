@@ -8,13 +8,39 @@
 
     <div class="container w-75">
 
-        {% comment %} <form action="/polls/altera/" method="post" class="m-3"> {% endcomment %}
+        <form action="/polls/altera/" method="post" class="m-3">
             {% csrf_token %}
 
-            {% crispy form %}
-            {% comment %} {{ form|crispy }} {% endcomment %}
+            <div class="row">
+                <div class="form-group col-md-6">
+                  {{ usuario_form.first_name|as_crispy_field }}
+                </div>
+                <div class="form-group col-md-6">
+                  {{ usuario_form.last_name|as_crispy_field }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-*">
+                    {{ usuario_form.email|as_crispy_field }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-6">
+                  {{ profile_form.sexo|as_crispy_field }}
+                </div>
+                <div class="form-group col-md-6">
+                  {{ profile_form.data_nascimento|as_crispy_field }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-*">
+                    {{ usuario_form.is_active|as_crispy_field }}
+                </div>
+            </div>
 
-        {% comment %} </form> {% endcomment %}
+            <button type="submit" class="btn btn-primary">Alterar</button>
+
+        </form>
     </div>
 
 {% endblock conteudo %}
