@@ -1,5 +1,8 @@
 # MeuProjeto
 
+## Python version: 3.12.4
+## Django Version: 4.2.16
+
 ### 127.0.0.1:8000/polls/
 
 ### pt-br
